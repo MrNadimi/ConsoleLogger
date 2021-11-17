@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'com.mrnadimi'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    /**
+     * https://github.com/dialex/JColor
+     * This lib use Jansi lib
+     */
+    implementation group: 'com.diogonunes', name: 'JColor', version: '5.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.mrnadimi.consolelogger.MainClass'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task execute(type:JavaExec){
+    main = "com.mrnadimi.consolelogger.MainClass"
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+}
