@@ -12,14 +12,16 @@ package com.mrnadimi.consolelogger;
  */
 public class MainClass {
 
-    private static final Log LOG = Log.getLogger(MainClass.class).setWithAnsi(false);
+    private static final Log LOG = Log.getLogger(MainClass.class).setWithAnsi(true);
     public static void main(String[] args){
 
         long now = System.currentTimeMillis();
-        for (int i = 0 ; i < 10000 ; i ++)
-        LOG.debug("salam" );
+        LOG.debug("Hi java Console Logger" );
+        LOG.warn("Hi java Console Logger" );
+        LOG.error("Hi java Console Logger" );
+        LOG.trace("Hi java Console Logger" );
+        LOG.info("Hi java Console Logger" );
 
 
-        LOG.trace(System.currentTimeMillis() - now);
     }
 }

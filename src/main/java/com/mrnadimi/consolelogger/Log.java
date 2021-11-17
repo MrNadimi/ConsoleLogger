@@ -163,12 +163,22 @@ public class Log {
 
     private void print(Level tag, Object message , Throwable ex){
         System.out.println(
-                getDate()+" "+(withAnsi ? getColorizedTag(tag) : tag.toString())+
+                getDate()+" "+(withAnsi ? getColorizedTag(tag) : getNonColoredTag(tag))+
                         " ["+Thread.currentThread().getName()+"] "+
                         (withAnsi ? getColorizedLogger() : logClass.getName())+" "+
                         (message == null ? null : message instanceof Throwable ? getStackTrace((Throwable) message): message.toString())+" "+
                         (ex == null ? "" : withAnsi ? getColorizedThrow(ex) : getStackTrace(ex))
         );
+    }
+
+    private String getNonColoredTag(Level tag){
+        switch (tag){
+            case INFO:case WARN:
+                return " "+tag.toString();
+            default:
+                return tag.toString();
+
+        }
     }
 
     private String getColorizedTag(Level tag){
