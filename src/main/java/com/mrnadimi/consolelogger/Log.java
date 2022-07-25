@@ -43,7 +43,7 @@ public class Log {
         return this;
     }
 
-    public void setEnable(boolean enable) {
+    public static void setEnable(boolean enable) {
         Log.enable = enable;
     }
 
