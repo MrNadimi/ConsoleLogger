@@ -24,6 +24,7 @@ import static com.diogonunes.jcolor.Attribute.BRIGHT_YELLOW_TEXT;
 public class Log {
 
     private boolean withAnsi;
+    private boolean enable = true;
 
     public static Log getLogger(Class<?> logClass){
         return new Log(logClass);
@@ -42,8 +43,17 @@ public class Log {
         return this;
     }
 
+    public Log setEnable(boolean enable) {
+        this.enable = enable;
+        return this;
+    }
+
     public boolean isWithAnsi() {
         return withAnsi;
+    }
+
+    public boolean isEnabled(){
+        return enable;
     }
 
     /**
@@ -162,6 +172,9 @@ public class Log {
 
 
     private void print(Level tag, Object message , Throwable ex){
+        if (!isEnabled()){
+            return;
+        }
         System.out.println(
                 getDate()+" "+(withAnsi ? getColorizedTag(tag) : getNonColoredTag(tag))+
                         " ["+Thread.currentThread().getName()+"] "+
