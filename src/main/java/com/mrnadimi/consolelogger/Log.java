@@ -24,7 +24,7 @@ import static com.diogonunes.jcolor.Attribute.BRIGHT_YELLOW_TEXT;
 public class Log {
 
     private boolean withAnsi;
-    private boolean enable = true;
+    private static boolean enable = true;
 
     public static Log getLogger(Class<?> logClass){
         return new Log(logClass);
@@ -43,9 +43,8 @@ public class Log {
         return this;
     }
 
-    public Log setEnable(boolean enable) {
-        this.enable = enable;
-        return this;
+    public void setEnable(boolean enable) {
+        Log.enable = enable;
     }
 
     public boolean isWithAnsi() {
