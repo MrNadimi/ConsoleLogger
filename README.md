@@ -16,7 +16,7 @@ repositories {
 ```` 
 dependencies {
       ...
-      implementation 'com.github.MrNadimi:ConsoleLogger:1.0.1'
+      implementation 'com.github.MrNadimi:ConsoleLogger:1.0.2'
 }
 ````
 
